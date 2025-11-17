@@ -27,6 +27,8 @@ spec:
                   key: database-url
             - name: LITELLM_MASTER_KEY
               value: "dummy"  # Required by LiteLLM for custom models
+            - name: STORE_MODEL_IN_DB
+              value: "true"
           volumeMounts:
             - name: litellm-config
               mountPath: /etc/litellm

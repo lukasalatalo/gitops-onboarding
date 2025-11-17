@@ -24,3 +24,4 @@ spec:
               value: "http://litellm:4000"
             - name: OPENAI_API_KEY
               value: "dummy"  # Required by OpenWebUI but not used by LiteLLM for custom models
+            
