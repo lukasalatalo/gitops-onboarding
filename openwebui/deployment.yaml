@@ -21,9 +21,15 @@ spec:
             - name: WEBUI_NAME
               value: "Local OpenWebUI"
             - name: OPENAI_API_BASE
-              value: "http://litellm:4000/v1"
+              value: "http://litellm:4000"
             - name: OPENAI_API_KEY
               value: "dummy"  # Should match LITELLM_MASTER_KEY from litellm deployment
             - name: ENABLE_MODEL_FILTER
               value: "false"  # Allow all models from LiteLLM
+            - name: DEFAULT_USER_ROLE
+              value: "admin"  # Ensure admin can see all models
+            - name: ENABLE_SIGNUP
+              value: "false"  # Optional: disable signup for security
+            - name: ENABLE_OPENAI_API
+              value: "true"  # Enable OpenAI API compatibility
             

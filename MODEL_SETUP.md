@@ -70,25 +70,60 @@ If you prefer config file only, you can disable database storage:
 
 ### Models not showing in Open WebUI?
 
-1. **Verify LiteLLM has the models:**
+**Step 1: Verify LiteLLM has models**
+```bash
+# Port-forward to LiteLLM
+kubectl port-forward svc/litellm 4000:4000
+
+# In another terminal, check models
+curl -H "Authorization: Bearer dummy" http://localhost:4000/v1/models
+```
+
+If this returns an empty list or error, **you need to add models first** via the dashboard (Option 1) or API (Option 2).
+
+**Step 2: Verify OpenWebUI can reach LiteLLM**
+```bash
+# Test from OpenWebUI pod
+kubectl exec -it deployment/openwebui -- wget -qO- http://litellm:4000/v1/models
+```
+
+**Step 3: Check OpenWebUI connection in UI**
+Even with environment variables set, you may need to configure the connection in OpenWebUI UI:
+
+1. Port-forward to OpenWebUI:
    ```bash
-   kubectl port-forward svc/litellm 4000:4000
-   curl http://localhost:4000/v1/models
+   kubectl port-forward svc/openwebui 8080:8080
    ```
 
-2. **Check LiteLLM logs:**
-   ```bash
-   kubectl logs deployment/litellm
-   ```
+2. Open `http://localhost:8080` in browser
 
-3. **Verify Open WebUI connection:**
-   - Check that `OPENAI_API_BASE` in OpenWebUI points to `http://litellm:4000/v1`
-   - Check that `OPENAI_API_KEY` matches `LITELLM_MASTER_KEY` (both should be "dummy")
+3. Go to **Settings** → **Connections** (or **Admin Panel** → **Connections**)
 
-4. **Restart Open WebUI:**
-   ```bash
-   kubectl rollout restart deployment/openwebui
-   ```
+4. Create/verify connection:
+   - **URL:** `http://litellm:4000` (or `http://litellm:4000/v1` - try both)
+   - **Key:** `dummy`
+
+5. Save and refresh the page
+
+**Step 4: Check logs**
+```bash
+# LiteLLM logs
+kubectl logs deployment/litellm --tail=50
+
+# OpenWebUI logs
+kubectl logs deployment/openwebui --tail=50 | grep -i model
+```
+
+**Step 5: Restart services**
+```bash
+kubectl rollout restart deployment/openwebui
+kubectl rollout restart deployment/litellm
+```
+
+**Step 6: Run automated troubleshooting**
+```bash
+./troubleshoot-models.sh
+```
 
 ### Quick Test
 
