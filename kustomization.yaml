@@ -5,6 +5,7 @@ resources:
   - litellm/postgres-secret.yaml
   - litellm/postgres-deployment.yaml
   - litellm/postgres-service.yaml
+  - litellm/config.yaml
   - litellm/deployment.yaml
   - litellm/service.yaml
   - openwebui/deployment.yaml

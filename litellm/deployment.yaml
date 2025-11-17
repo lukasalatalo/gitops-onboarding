@@ -18,12 +18,18 @@ spec:
           ports:
             - containerPort: 4000
           command: ["litellm"]
-          args: ["--host=0.0.0.0", "--port=4000"]
+          args: ["--host=0.0.0.0", "--port=4000", "--config=/etc/litellm/config.yaml"]
           env:
-            - name: OPENAI_API_KEY
-              value: "dummy"   # replace later if needed
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: litellm-postgres-secret
                   key: database-url
+          volumeMounts:
+            - name: litellm-config
+              mountPath: /etc/litellm
+              readOnly: true
+      volumes:
+        - name: litellm-config
+          configMap:
+            name: litellm-config
