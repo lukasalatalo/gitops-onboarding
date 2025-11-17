@@ -5,9 +5,22 @@ resources:
   - litellm/postgres-secret.yaml
   - litellm/postgres-deployment.yaml
   - litellm/postgres-service.yaml
-  - litellm/config.yaml
   - litellm/deployment.yaml
   - litellm/service.yaml
   - openwebui/deployment.yaml
   - openwebui/service.yaml
+
+configMapGenerator:
+  - name: litellm-config
+    files:
+      - config.yaml=litellm/config-content.yaml
+
+# Automatically update ConfigMap name references in deployments
+# This ensures the deployment references the hashed ConfigMap name
+nameReference:
+  - kind: ConfigMap
+    fieldSpecs:
+      - kind: Deployment
+        path: spec/template/spec/volumes/configMap/name
+        create: true
 
