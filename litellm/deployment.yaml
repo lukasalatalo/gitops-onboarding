@@ -25,6 +25,8 @@ spec:
                 secretKeyRef:
                   name: litellm-postgres-secret
                   key: database-url
+            - name: LITELLM_MASTER_KEY
+              value: "dummy"  # Required by LiteLLM for custom models
           volumeMounts:
             - name: litellm-config
               mountPath: /etc/litellm
