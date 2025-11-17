@@ -15,12 +15,17 @@ configMapGenerator:
     files:
       - config.yaml=litellm/config-content.yaml
 
-# Automatically update ConfigMap name references in deployments
-# This ensures the deployment references the hashed ConfigMap name
-nameReference:
-  - kind: ConfigMap
-    fieldSpecs:
-      - kind: Deployment
-        path: spec/template/spec/volumes/configMap/name
-        create: true
+# Update the deployment to reference the generated ConfigMap name (with hash)
+# This ensures the deployment restarts when the ConfigMap changes
+replacements:
+  - source:
+      kind: ConfigMap
+      name: litellm-config
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: Deployment
+          name: litellm
+        fieldPaths:
+          - spec.template.spec.volumes.0.configMap.name
 
