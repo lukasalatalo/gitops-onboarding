@@ -20,7 +20,7 @@ spec:
           env:
             - name: WEBUI_NAME
               value: "Local OpenWebUI"
-            - name: OPENWEBUI_BASE_URL
+            - name: OPENAI_API_BASE
               value: "http://litellm:4000"
             - name: OPENAI_API_KEY
               value: "dummy"  # Should match LITELLM_MASTER_KEY from litellm deployment
