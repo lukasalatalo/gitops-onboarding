@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: litellm
-          image: ghcr.io/litellm/litellm:latest
+          image: ghcr.io/berriai/litellm-database:main-stable
           ports:
             - containerPort: 4000
           command: ["litellm"]
