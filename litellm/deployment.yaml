@@ -22,3 +22,8 @@ spec:
           env:
             - name: OPENAI_API_KEY
               value: "dummy"   # replace later if needed
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: litellm-postgres-secret
+                  key: database-url
