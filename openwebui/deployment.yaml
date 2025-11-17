@@ -21,7 +21,11 @@ spec:
             - name: WEBUI_NAME
               value: "Local OpenWebUI"
             - name: OPENAI_API_BASE
-              value: "http://litellm:4000"
+              value: "http://litellm:4000/v1"
             - name: OPENAI_API_KEY
-              value: "dummy"  # Required by OpenWebUI but not used by LiteLLM for custom models
+              value: "dummy"  # Should match LITELLM_MASTER_KEY from litellm deployment
+            - name: ENABLE_MODEL_FILTER
+              value: "false"  # Allow all models from LiteLLM
+            - name: DEFAULT_MODELS
+              value: "custom-model-1"  # Default model(s) to show, comma-separated
             
