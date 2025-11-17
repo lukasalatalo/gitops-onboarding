@@ -28,8 +28,6 @@ spec:
               value: "false"  # Allow all models from LiteLLM
             - name: DEFAULT_USER_ROLE
               value: "admin"  # Ensure admin can see all models
-            - name: ENABLE_SIGNUP
-              value: "false"  # Optional: disable signup for security
             - name: ENABLE_OPENAI_API
               value: "true"  # Enable OpenAI API compatibility
             
