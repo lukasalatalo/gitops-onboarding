@@ -4,19 +4,8 @@ metadata:
   name: litellm-config
 data:
   config.yaml: |
-    model_list:
-      # Example custom model configuration
-      # Replace with your actual model endpoints
-      - model_name: custom-model-1
-        litellm_params:
-          model: claude-latest
-          api_base: https://llm-proxy.edgez.live/v1
-          api_key: sk-K2AyiqHTpNHDp3vhmpChjQ
-      
-      # Add more models as needed
-      # - model_name: custom-model-2
-      #   litellm_params:
-      #     model: gemini-2.5-flash-lite
-      #     api_base: https://llm-proxy.edgez.live/v1
-      #     api_key: sk-K2AyiqHTpNHDp3vhmpChjQ
+    # Models are managed via LiteLLM Dashboard/UI
+    # Access at http://localhost:4000/ui (after port-forward)
+    # Models stored in database (STORE_MODEL_IN_DB: true)
+    model_list: []
 

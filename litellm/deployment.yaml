@@ -29,6 +29,8 @@ spec:
               value: "dummy"  # Required by LiteLLM for custom models
             - name: STORE_MODEL_IN_DB
               value: "true"
+            - name: UI_PASSWORD
+              value: "admin"  # Password for LiteLLM UI (change this!)
           volumeMounts:
             - name: litellm-config
               mountPath: /etc/litellm

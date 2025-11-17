@@ -26,6 +26,4 @@ spec:
               value: "dummy"  # Should match LITELLM_MASTER_KEY from litellm deployment
             - name: ENABLE_MODEL_FILTER
               value: "false"  # Allow all models from LiteLLM
-            - name: DEFAULT_MODELS
-              value: "custom-model-1"  # Default model(s) to show, comma-separated
             
