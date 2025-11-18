@@ -33,16 +33,39 @@ spec:
               value: "true"
             - name: NEXTAUTH_URL
               value: "http://localhost:3000"
+            # ClickHouse configuration
+            - name: CLICKHOUSE_URL
+              value: "http://langfuse-clickhouse:8123"
+            - name: CLICKHOUSE_MIGRATION_URL
+              value: "clickhouse://langfuse-clickhouse:9000"
+            - name: CLICKHOUSE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-clickhouse-secret
+                  key: user
+            - name: CLICKHOUSE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-clickhouse-secret
+                  key: password
+            - name: CLICKHOUSE_DB
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-clickhouse-secret
+                  key: database
           livenessProbe:
             httpGet:
               path: /api/public/health
               port: 3000
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
+            timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /api/public/health
               port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
 
