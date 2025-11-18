@@ -36,7 +36,14 @@ spec:
           volumeMounts:
             - name: clickhouse-data
               mountPath: /var/lib/clickhouse
+            - name: clickhouse-config
+              mountPath: /etc/clickhouse-server/config.d/custom-config.xml
+              subPath: custom-config.xml
+              readOnly: true
       volumes:
         - name: clickhouse-data
           emptyDir: {}  # Use PersistentVolumeClaim in production
+        - name: clickhouse-config
+          configMap:
+            name: langfuse-clickhouse-config
 

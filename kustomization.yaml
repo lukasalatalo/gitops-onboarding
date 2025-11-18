@@ -14,6 +14,7 @@ resources:
   - langfuse/postgres-deployment.yaml
   - langfuse/postgres-service.yaml
   - langfuse/clickhouse-secret.yaml
+  - langfuse/clickhouse-config.yaml
   - langfuse/clickhouse-deployment.yaml
   - langfuse/clickhouse-service.yaml
   - langfuse/deployment.yaml

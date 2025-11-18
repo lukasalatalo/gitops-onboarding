@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: langfuse-clickhouse-config
+data:
+  custom-config.xml: |
+    <?xml version="1.0"?>
+    <clickhouse>
+        <!-- Define a default cluster pointing to itself for standalone mode -->
+        <!-- This allows Langfuse to use ON CLUSTER syntax without Zookeeper -->
+        <remote_servers>
+            <default>
+                <shard>
+                    <replica>
+                        <host>localhost</host>
+                        <port>9000</port>
+                    </replica>
+                </shard>
+            </default>
+        </remote_servers>
+    </clickhouse>
+
