@@ -17,6 +17,8 @@ resources:
   - langfuse/clickhouse-config.yaml
   - langfuse/clickhouse-deployment.yaml
   - langfuse/clickhouse-service.yaml
+  - langfuse/zookeeper-deployment.yaml
+  - langfuse/zookeeper-service.yaml
   - langfuse/deployment.yaml
   - langfuse/service.yaml
   - langfuse/ingress.yaml

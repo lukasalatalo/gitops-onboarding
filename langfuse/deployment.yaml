@@ -53,6 +53,8 @@ spec:
                 secretKeyRef:
                   name: langfuse-clickhouse-secret
                   key: database
+            - name: CLICKHOUSE_CLUSTER_ENABLED
+              value: "false"  # Disable cluster features for single-node setup
           livenessProbe:
             httpGet:
               path: /api/public/health
