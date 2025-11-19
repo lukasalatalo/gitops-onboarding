@@ -16,6 +16,7 @@ spec:
         # Langfuse Web (UI and API)
         - name: langfuse-web
           image: langfuse/langfuse:latest
+          workingDir: /app
           ports:
             - containerPort: 3000
           env:
@@ -55,10 +56,14 @@ spec:
                   key: salt
             - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
               value: "false"
-          command: ["node", "apps/web/server.js"]
+            - name: NODE_ENV
+              value: "production"
+          command: ["/bin/sh", "-c"]
+          args: ["node apps/web/server.js"]
         # Langfuse Worker (async processing)
         - name: langfuse-worker
           image: langfuse/langfuse:latest
+          workingDir: /app
           env:
             - name: DATABASE_URL
               valueFrom:
@@ -84,5 +89,8 @@ spec:
                 secretKeyRef:
                   name: langfuse-secret
                   key: salt
-          command: ["node", "apps/worker/server.js"]
+            - name: NODE_ENV
+              value: "production"
+          command: ["/bin/sh", "-c"]
+          args: ["node apps/worker/server.js"]
 
