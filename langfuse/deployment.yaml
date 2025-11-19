@@ -39,11 +39,20 @@ spec:
             - name: REDIS_URL
               value: redis://langfuse-redis:6379
             - name: NEXTAUTH_SECRET
-              value: "change-this-secret-in-production-min-32-chars"  # Change this in production!
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-secret
+                  key: nextauth-secret
             - name: NEXTAUTH_URL
-              value: "http://localhost:3000"  # Update this with your actual URL
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-secret
+                  key: nextauth-url
             - name: SALT
-              value: "change-this-salt-in-production"  # Change this in production!
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-secret
+                  key: salt
             - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
               value: "false"
           command: ["node", "apps/web/server.js"]
@@ -71,6 +80,9 @@ spec:
             - name: REDIS_URL
               value: redis://langfuse-redis:6379
             - name: SALT
-              value: "change-this-salt-in-production"  # Change this in production!
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-secret
+                  key: salt
           command: ["node", "apps/worker/server.js"]
 

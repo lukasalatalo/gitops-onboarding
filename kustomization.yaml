@@ -10,6 +10,7 @@ resources:
   - openwebui/deployment.yaml
   - openwebui/service.yaml
   # Langfuse resources
+  - langfuse/langfuse-secret.yaml
   - langfuse/postgres-secret.yaml
   - langfuse/postgres-deployment.yaml
   - langfuse/postgres-service.yaml
