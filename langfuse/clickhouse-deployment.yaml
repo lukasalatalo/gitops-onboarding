@@ -12,6 +12,23 @@ spec:
       labels:
         app: langfuse-clickhouse
     spec:
+      initContainers:
+        - name: init-clickhouse-dirs
+          image: busybox:latest
+          command: ['sh', '-c']
+          args:
+            - |
+              mkdir -p /var/lib/clickhouse/tmp
+              mkdir -p /var/lib/clickhouse/user_files
+              mkdir -p /var/lib/clickhouse/format_schemas
+              mkdir -p /var/log/clickhouse-server
+              chmod -R 777 /var/lib/clickhouse
+              chmod -R 777 /var/log/clickhouse-server
+          volumeMounts:
+            - name: clickhouse-data
+              mountPath: /var/lib/clickhouse
+            - name: clickhouse-logs
+              mountPath: /var/log/clickhouse-server
       containers:
         - name: clickhouse
           image: clickhouse/clickhouse-server:latest
@@ -33,6 +50,8 @@ spec:
           volumeMounts:
             - name: clickhouse-data
               mountPath: /var/lib/clickhouse
+            - name: clickhouse-logs
+              mountPath: /var/log/clickhouse-server
             - name: clickhouse-config
               mountPath: /etc/clickhouse-server/users.xml
               subPath: users.xml
@@ -41,6 +60,8 @@ spec:
               subPath: config.xml
       volumes:
         - name: clickhouse-data
+          emptyDir: {}
+        - name: clickhouse-logs
           emptyDir: {}
         - name: clickhouse-config
           configMap:

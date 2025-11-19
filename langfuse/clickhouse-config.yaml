@@ -24,5 +24,41 @@ data:
       <http_port>8123</http_port>
       <tcp_port>9000</tcp_port>
       <max_server_memory_usage_to_ram_ratio>0.9</max_server_memory_usage_to_ram_ratio>
+      
+      <!-- Data directory -->
+      <path>/var/lib/clickhouse/</path>
+      
+      <!-- Temporary files directory -->
+      <tmp_path>/var/lib/clickhouse/tmp/</tmp_path>
+      
+      <!-- User files directory -->
+      <user_files_path>/var/lib/clickhouse/user_files/</user_files_path>
+      
+      <!-- Format schemas directory -->
+      <format_schema_path>/var/lib/clickhouse/format_schemas/</format_schema_path>
+      
+      <!-- Logger configuration -->
+      <logger>
+        <log>/var/log/clickhouse-server/clickhouse-server.log</log>
+        <errorlog>/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
+        <level>information</level>
+        <console>1</console>
+      </logger>
+      
+      <!-- User directories configuration -->
+      <user_directories>
+        <users_xml>
+          <path>/etc/clickhouse-server/users.xml</path>
+        </users_xml>
+        <local_directory>
+          <path>/etc/clickhouse-server/users.d</path>
+        </local_directory>
+      </user_directories>
+      
+      <!-- Disable remote servers for standalone deployment -->
+      <remote_servers incl="clickhouse_remote_servers" />
+      
+      <!-- ZooKeeper (not needed for standalone) -->
+      <zookeeper incl="zookeeper-servers" optional="true" />
     </clickhouse>
 
