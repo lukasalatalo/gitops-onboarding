@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: langfuse
-          image: langfuse/langfuse:latest
+          image: ghcr.io/langfuse/langfuse:latest
           ports:
             - containerPort: 3000
           env:
@@ -23,48 +23,48 @@ spec:
                 secretKeyRef:
                   name: langfuse-postgres-secret
                   key: database-url
-            - name: NEXTAUTH_SECRET
-              value: "LzUP9c66oxwJ3YQHYrc4QjVS9pWvx0DeRFYScDLo+QA="  # Generate with: openssl rand -base64 32
-            - name: SALT
-              value: "utEhoqVhUtLBhFWzn+F9psDUEhnS4RUD69+2ol0IxqE="  # Generate with: openssl rand -base64 32
-            - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
-              value: "true"
-            - name: LANGFUSE_ENABLE_EXPERIMENTAL_PUBLIC_API
-              value: "true"
-            - name: NEXTAUTH_URL
-              value: "http://localhost:3000"
+            # - name: NEXTAUTH_SECRET
+            #   value: "LzUP9c66oxwJ3YQHYrc4QjVS9pWvx0DeRFYScDLo+QA="  # Generate with: openssl rand -base64 32
+            # - name: SALT
+            #   value: "utEhoqVhUtLBhFWzn+F9psDUEhnS4RUD69+2ol0IxqE="  # Generate with: openssl rand -base64 32
+            # - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
+            #   value: "true"
+            # - name: LANGFUSE_ENABLE_EXPERIMENTAL_PUBLIC_API
+            #   value: "true"
+            # - name: NEXTAUTH_URL
+            #   value: "http://localhost:3000"
             # ClickHouse configuration
-            - name: CLICKHOUSE_URL
-              value: "http://langfuse-clickhouse:8123"
-            - name: CLICKHOUSE_MIGRATION_URL
-              value: "clickhouse://langfuse-clickhouse:9000"
-            - name: CLICKHOUSE_USER
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: user
-            - name: CLICKHOUSE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: password
-            - name: CLICKHOUSE_DB
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: database
-            - name: CLICKHOUSE_CLUSTER_ENABLED
-              value: "false"  # Disable cluster features for single-node setup
-            # Redis configuration
-            - name: REDIS_HOST
-              value: "langfuse-redis"
-            - name: REDIS_PORT
-              value: "6379"
-            # Additional Next.js environment variables
-            - name: NEXT_PUBLIC_API_URL
-              value: "http://localhost:3000"
-            - name: NODE_ENV
-              value: "production"
+            # - name: CLICKHOUSE_URL
+            #   value: "http://langfuse-clickhouse:8123"
+            # - name: CLICKHOUSE_MIGRATION_URL
+            #   value: "clickhouse://langfuse-clickhouse:9000"
+            # - name: CLICKHOUSE_USER
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-clickhouse-secret
+            #       key: user
+            # - name: CLICKHOUSE_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-clickhouse-secret
+            #       key: password
+            # - name: CLICKHOUSE_DB
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-clickhouse-secret
+            #       key: database
+            # - name: CLICKHOUSE_CLUSTER_ENABLED
+            #   value: "false"  # Disable cluster features for single-node setup
+            # # Redis configuration
+            # - name: REDIS_HOST
+            #   value: "langfuse-redis"
+            # - name: REDIS_PORT
+            #   value: "6379"
+            # # Additional Next.js environment variables
+            # - name: NEXT_PUBLIC_API_URL
+            #   value: "http://localhost:3000"
+            # - name: NODE_ENV
+            #   value: "production"
           livenessProbe:
             httpGet:
               path: /api/public/health
