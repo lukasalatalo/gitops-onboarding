@@ -13,14 +13,14 @@ resources:
   - langfuse/postgres-secret.yaml
   - langfuse/postgres-deployment.yaml
   - langfuse/postgres-service.yaml
-  - langfuse/clickhouse-secret.yaml
-  - langfuse/clickhouse-config.yaml
-  - langfuse/clickhouse-deployment.yaml
-  - langfuse/clickhouse-service.yaml
-  - langfuse/zookeeper-deployment.yaml
-  - langfuse/zookeeper-service.yaml
-  - langfuse/redis-deployment.yaml
-  - langfuse/redis-service.yaml
+  # - langfuse/clickhouse-secret.yaml
+  # - langfuse/clickhouse-config.yaml
+  # - langfuse/clickhouse-deployment.yaml
+  # - langfuse/clickhouse-service.yaml
+  # - langfuse/zookeeper-deployment.yaml
+  # - langfuse/zookeeper-service.yaml
+  # - langfuse/redis-deployment.yaml
+  # - langfuse/redis-service.yaml
   - langfuse/deployment.yaml
   - langfuse/service.yaml
   - langfuse/ingress.yaml
