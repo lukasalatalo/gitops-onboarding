@@ -27,10 +27,11 @@ spec:
                   name: langfuse-postgres-secret
                   key: database-url
             - name: CLICKHOUSE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: database-url
+              value: clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
+              # valueFrom:
+              #   secretKeyRef:
+              #     name: langfuse-clickhouse-secret
+              #     key: database-url
             - name: CLICKHOUSE_USER
               value: default
             - name: CLICKHOUSE_PASSWORD
