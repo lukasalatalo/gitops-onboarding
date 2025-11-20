@@ -27,7 +27,7 @@ spec:
                   name: langfuse-postgres-secret
                   key: database-url
             - name: CLICKHOUSE_URL
-              value: http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123/langfuse
+              value: clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000/langfuse
               # valueFrom:
               #   secretKeyRef:
               #     name: langfuse-clickhouse-secret
