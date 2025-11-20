@@ -5,7 +5,7 @@ metadata:
 data:
   users.xml: |
     <?xml version="1.0"?>
-    <clickhouse>
+    <yandex>
       <users>
         <default>
           <password>langfuse-clickhouse-password</password>
@@ -16,10 +16,10 @@ data:
           <quota>default</quota>
         </default>
       </users>
-    </clickhouse>
+    </yandex>
   config.xml: |
     <?xml version="1.0"?>
-    <clickhouse>
+    <yandex>
       <listen_host>0.0.0.0</listen_host>
       <http_port>8123</http_port>
       <tcp_port>9000</tcp_port>
@@ -83,5 +83,5 @@ data:
       
       <!-- ZooKeeper (not needed for standalone) -->
       <zookeeper incl="zookeeper-servers" optional="true" />
-    </clickhouse>
+    </yandex>
 
