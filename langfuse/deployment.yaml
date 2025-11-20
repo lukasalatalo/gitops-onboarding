@@ -19,44 +19,44 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            # - name: DISABLE_ANALYTICS
-            #   value: "true"
+            - name: DISABLE_ANALYTICS
+              value: "true"
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: langfuse-postgres-secret
                   key: database-url
-            - name: CLICKHOUSE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: database-url
-            - name: CLICKHOUSE_USER
-              value: default
-            - name: CLICKHOUSE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: password
-            - name: REDIS_URL
-              value: redis://langfuse-redis:6379
-            - name: NEXTAUTH_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-secret
-                  key: nextauth-secret
-            - name: NEXTAUTH_URL
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-secret
-                  key: nextauth-url
-            - name: SALT
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-secret
-                  key: salt
-            - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
-              value: "false"
+            # - name: CLICKHOUSE_URL
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-clickhouse-secret
+            #       key: database-url
+            # - name: CLICKHOUSE_USER
+            #   value: default
+            # - name: CLICKHOUSE_PASSWORD
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-clickhouse-secret
+            #       key: password
+            # - name: REDIS_URL
+            #   value: redis://langfuse-redis:6379
+            # - name: NEXTAUTH_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-secret
+            #       key: nextauth-secret
+            # - name: NEXTAUTH_URL
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-secret
+            #       key: nextauth-url
+            # - name: SALT
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: langfuse-secret
+            #       key: salt
+            # - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
+            #   value: "false"
  
           # Use default entrypoint which runs migrations, then start web server
         # Langfuse Worker (async processing)
