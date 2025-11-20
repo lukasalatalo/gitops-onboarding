@@ -77,7 +77,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: migrations
-          image: ghcr.io/langfuse/langfuse-migrations:3.13.0
+          image: ghcr.io/langfuse/langfuse-migrations:latest
           envFrom:
             - secretRef:
                 name: langfuse-secrets
