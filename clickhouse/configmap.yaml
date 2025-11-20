@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: clickhouse-config
+  labels:
+    component: clickhouse
+data:
+  config.xml: |
+    <clickhouse>
+        <!-- Configuration for low-memory environments (less than 16GB RAM) -->
+
+        <!-- Server-level settings -->
+        <!-- Mark cache size (default is 5GB, keeping at 5GB now) -->
+        <mark_cache_size>5368709120</mark_cache_size>
+
+        <!-- Memory limits -->
+        <max_server_memory_usage>7516192768</max_server_memory_usage> <!-- 7GB -->
+
+        <!-- Disable logging tables to save memory -->
+        <asynchronous_metric_log remove="1"/>
+        <metric_log remove="1"/>
+        <text_log remove="1"/>
+        <trace_log remove="1"/>
+        <query_log remove="1"/>
+        <query_thread_log remove="1"/>
+        <part_log remove="1"/>
+
+        <!-- User-level settings in profiles -->
+        <profiles>
+            <default>
+                <!-- Query processing threads (increased for better performance) -->
+                <max_threads>4</max_threads>
+
+                <!-- Block size -->
+                <max_block_size>65536</max_block_size>
+
+                <!-- Download threads -->
+                <max_download_threads>2</max_download_threads>
+
+                <!-- Enable parallel parsing and formatting -->
+                <input_format_parallel_parsing>1</input_format_parallel_parsing>
+                <output_format_parallel_formatting>1</output_format_parallel_formatting>
+
+                <!-- Memory limits per query -->
+                <max_memory_usage>5368709120</max_memory_usage> <!-- 5GB -->
+            </default>
+        </profiles>
+    </clickhouse>

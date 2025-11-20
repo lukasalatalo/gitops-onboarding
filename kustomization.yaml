@@ -10,19 +10,28 @@ resources:
   - openwebui/deployment.yaml
   - openwebui/service.yaml
   # Langfuse resources
-  - langfuse/langfuse-secret.yaml
-  - langfuse/postgres-secret.yaml
-  - langfuse/postgres-deployment.yaml
-  - langfuse/postgres-service.yaml
-  - langfuse/clickhouse-secret.yaml
-  - langfuse/clickhouse-config.yaml
-  - langfuse/clickhouse-deployment.yaml
-  - langfuse/clickhouse-service.yaml
-  - langfuse/redis-deployment.yaml
-  - langfuse/redis-service.yaml
-  - langfuse/deployment.yaml
-  - langfuse/service.yaml
-  - langfuse/ingress.yaml
+  - langfuse_web/deployment.yaml
+  - langfuse_web/service.yaml
+  - langfuse_web/route.yaml
+  - langfuse_db/deployment.yaml
+  - langfuse_db/service.yaml
+  - clickhouse/deployment.yaml
+  - clickhouse/service.yaml
+  - clickhouse/configmap.yaml
+
+  # - langfuse/langfuse-secret.yaml
+  # - langfuse/postgres-secret.yaml
+  # - langfuse/postgres-deployment.yaml
+  # - langfuse/postgres-service.yaml
+  # - langfuse/clickhouse-secret.yaml
+  # - langfuse/clickhouse-config.yaml
+  # - langfuse/clickhouse-deployment.yaml
+  # - langfuse/clickhouse-service.yaml
+  # - langfuse/redis-deployment.yaml
+  # - langfuse/redis-service.yaml
+  # - langfuse/deployment.yaml
+  # - langfuse/service.yaml
+  # - langfuse/ingress.yaml
 
 configMapGenerator:
   - name: litellm-config

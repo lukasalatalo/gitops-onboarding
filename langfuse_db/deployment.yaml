@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: langfuse-db
+  labels:
+    component: langfuse-db
+spec:
+  serviceName: langfuse-db-service
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      component: langfuse-db
+  template:
+    metadata:
+      labels:
+        component: langfuse-db
+    spec:
+      containers:
+      - name: postgres
+        image: postgres-image
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "langfuse"
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: db-user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: db-password
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: "4Gi"
+          limits:
+            cpu: "0.5"
+            memory: "4Gi"
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - pg_isready -U langfuse -d langfuse
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - pg_isready -U langfuse -d langfuse
+          initialDelaySeconds: 30
+          periodSeconds: 30
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: ocs-storagecluster-ceph-rbd
+      resources:
+        requests:
+          storage: 10Gi

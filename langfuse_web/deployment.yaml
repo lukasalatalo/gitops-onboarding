@@ -1,0 +1,154 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: langfuse
+  labels:
+    component: langfuse
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      component: langfuse
+  template:
+    metadata:
+      labels:
+        component: langfuse
+    spec:
+      containers:
+      - name: langfuse
+        image: langfuse-image
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: database-url
+        - name: NEXTAUTH_URL
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: nextauth-url
+        - name: NEXTAUTH_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: nextauth-secret
+        - name: SALT
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: salt
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: encryption-key
+        - name: HOSTNAME
+          value: "0.0.0.0"
+        - name: LANGFUSE_INIT_ORG_ID
+          value: "default-org"
+        - name: LANGFUSE_INIT_ORG_NAME
+          value: "Default Organization"
+        - name: LANGFUSE_INIT_PROJECT_ID
+          value: "default-project"
+        - name: LANGFUSE_INIT_PROJECT_NAME
+          value: "Default Project"
+        - name: LANGFUSE_INIT_PROJECT_PUBLIC_KEY
+          value: "lf_pk_development"
+        - name: LANGFUSE_INIT_PROJECT_SECRET_KEY
+          value: "lf_sk_development"
+        - name: LANGFUSE_INIT_USER_EMAIL
+          value: "admin@example.com"
+        - name: LANGFUSE_INIT_USER_NAME
+          value: "Admin User"
+        - name: LANGFUSE_INIT_USER_PASSWORD
+          value: "admin123"
+        - name: CLICKHOUSE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: clickhouse-url
+        - name: CLICKHOUSE_USER
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: clickhouse-user
+        - name: CLICKHOUSE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: clickhouse-password
+        - name: CLICKHOUSE_MIGRATION_URL
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: clickhouse-migration-url
+        - name: CLICKHOUSE_CLUSTER_ENABLED
+          value: "false"
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: redis-host
+        - name: REDIS_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: redis-port
+        - name: REDIS_AUTH
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: valkey-password
+        - name: S3_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-endpoint
+        - name: S3_ACCESS_KEY_ID
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: minio-root-user
+        - name: S3_SECRET_ACCESS_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: minio-root-password
+        - name: S3_BUCKET_NAME
+          value: "langfuse"
+        - name: S3_REGION
+          value: "us-east-1"
+        - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
+          value: "langfuse"
+        - name: LANGFUSE_S3_EVENT_UPLOAD_PREFIX
+          value: "events/"
+        - name: LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE
+          value: "true"
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: node-tls-reject-unauthorized
+        resources:
+          requests:
+            cpu: "1.0"
+            memory: "4Gi"
+          limits:
+            cpu: "1.0"
+            memory: "4Gi"
+        readinessProbe:
+          httpGet:
+            path: /api/public/ready
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/public/health
+            port: 3000
+          initialDelaySeconds: 60
+          periodSeconds: 30

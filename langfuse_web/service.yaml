@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: langfuse-service
+  labels:
+    component: langfuse
+spec:
+  selector:
+    component: langfuse
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  type: ClusterIP
