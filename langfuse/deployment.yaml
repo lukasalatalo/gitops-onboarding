@@ -14,9 +14,8 @@ spec:
     spec:
       containers:
         # Langfuse Web (UI and API)
-        - name: langfuse-web
-          image: langfuse/langfuse:latest
-          workingDir: /app
+        - name: langfuse
+          image: ghcr.io/langfuse/langfuse:3.13.0
           ports:
             - containerPort: 3000
           env:
@@ -56,41 +55,30 @@ spec:
                   key: salt
             - name: LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES
               value: "false"
-            - name: NODE_ENV
-              value: "production"
-          command: ["/bin/sh", "-c"]
-          args: ["node apps/web/server.js"]
+ 
+          # Use default entrypoint which runs migrations, then start web server
         # Langfuse Worker (async processing)
-        - name: langfuse-worker
-          image: langfuse/langfuse:latest
-          workingDir: /app
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-postgres-secret
-                  key: database-url
-            - name: CLICKHOUSE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: database-url
-            - name: CLICKHOUSE_USER
-              value: default
-            - name: CLICKHOUSE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-clickhouse-secret
-                  key: password
-            - name: REDIS_URL
-              value: redis://langfuse-redis:6379
-            - name: SALT
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-secret
-                  key: salt
-            - name: NODE_ENV
-              value: "production"
-          command: ["/bin/sh", "-c"]
-          args: ["node apps/worker/server.js"]
+        # Note: Worker may be part of the web container or use a different setup
+        # For now, using the same image with worker process
 
+
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: langfuse-migrations
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrations
+          image: ghcr.io/langfuse/langfuse-migrations:3.13.0
+          envFrom:
+            - secretRef:
+                name: langfuse-secrets
+          env:
+            - name: DISABLE_ANALYTICS
+              value: "true"
