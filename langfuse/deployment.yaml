@@ -78,9 +78,11 @@ spec:
       containers:
         - name: migrations
           image: ghcr.io/langfuse/langfuse-migrations:latest
-          envFrom:
-            - secretRef:
-                name: langfuse-secrets
           env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-postgres-secret
+                  key: database-url
             - name: DISABLE_ANALYTICS
               value: "true"
