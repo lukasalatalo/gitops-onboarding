@@ -66,23 +66,23 @@ spec:
 
 
 ---
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: langfuse-migrations
-spec:
-  backoffLimit: 3
-  template:
-    spec:
-      restartPolicy: Never
-      containers:
-        - name: migrations
-          image: ghcr.io/langfuse/langfuse-migrations:latest
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-postgres-secret
-                  key: database-url
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: langfuse-migrations
+# spec:
+#   backoffLimit: 3
+#   template:
+#     spec:
+#       restartPolicy: Never
+#       containers:
+#         - name: migrations
+#           image: ghcr.io/langfuse/langfuse-migrations:latest
+#           env:
+#             - name: DATABASE_URL
+#               valueFrom:
+#                 secretKeyRef:
+#                   name: langfuse-postgres-secret
+#                   key: database-url
             # - name: DISABLE_ANALYTICS
             #   value: "true"
