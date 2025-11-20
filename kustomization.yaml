@@ -15,6 +15,7 @@ resources:
   - langfuse_web/route.yaml
   - langfuse_db/deployment.yaml
   - langfuse_db/service.yaml
+  - langfuse_worker/deployment.yaml
   - clickhouse/deployment.yaml
   - clickhouse/service.yaml
   - clickhouse/configmap.yaml
