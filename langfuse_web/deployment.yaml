@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: langfuse
   labels:
-    component: langfuse
+    app: langfuse
 spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      component: langfuse
+      app: langfuse
   template:
     metadata:
       labels:
-        component: langfuse
+        app: langfuse
     spec:
       containers:
       - name: langfuse

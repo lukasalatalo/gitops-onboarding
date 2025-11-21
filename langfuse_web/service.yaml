@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: langfuse-service
   labels:
-    component: langfuse
+    app: langfuse
 spec:
   selector:
-    component: langfuse
+    app: langfuse
   ports:
   - port: 3000
     targetPort: 3000
