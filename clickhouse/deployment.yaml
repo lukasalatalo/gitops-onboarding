@@ -73,7 +73,8 @@ spec:
       name: clickhouse-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: ocs-storagecluster-ceph-rbd
+      # Removed OpenShift-specific storageClassName for local deployment
+      # Uses default storage class (standard for minikube/Docker Desktop, local-path for kind)
       resources:
         requests:
           storage: 10Gi

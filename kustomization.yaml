@@ -12,7 +12,6 @@ resources:
   # Langfuse resources
   - langfuse_web/deployment.yaml
   - langfuse_web/service.yaml
-  - langfuse_web/route.yaml
   - langfuse_db/deployment.yaml
   - langfuse_db/service.yaml
   - langfuse_worker/deployment.yaml
@@ -38,6 +37,26 @@ configMapGenerator:
   - name: litellm-config
     files:
       - config.yaml=litellm/config-content.yaml
+  - name: langfuse-config
+    literals:
+      - database-url=postgresql://langfuse:langfuse@langfuse-db-service:5432/langfuse
+      - db-user=langfuse
+      - db-password=langfuse
+      - nextauth-url=http://localhost:3000
+      - nextauth-secret=your-nextauth-secret-change-this-in-production
+      - salt=your-salt-change-this-in-production
+      - encryption-key=your-encryption-key-change-this-in-production
+      - clickhouse-url=http://clickhouse-service:8123
+      - clickhouse-migration-url=http://clickhouse-service:8123
+      - clickhouse-user=langfuse
+      - clickhouse-password=langfuse
+      - redis-host=redis-service
+      - redis-port=6379
+      - valkey-password=
+      - s3-endpoint=http://minio-service:9000
+      - minio-root-user=minioadmin
+      - minio-root-password=minioadmin
+      - node-tls-reject-unauthorized=0
 
 # Update the deployment to reference the generated ConfigMap name (with hash)
 # This ensures the deployment restarts when the ConfigMap changes
