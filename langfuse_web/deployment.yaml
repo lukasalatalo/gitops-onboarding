@@ -98,6 +98,11 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: redis-port
+        - name: REDIS_AUTH
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: redis-password
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           valueFrom:
             configMapKeyRef:
