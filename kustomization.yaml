@@ -34,9 +34,9 @@ configMapGenerator:
       - db-user=langfuse
       - db-password=langfuse
       - nextauth-url=http://localhost:3000
-      - nextauth-secret=your-nextauth-secret-change-this-in-production
-      - salt=your-salt-change-this-in-production
-      - encryption-key=your-encryption-key-change-this-in-production
+      - nextauth-secret=H3lRro28JrRl3MpAWWeh5FtD8Wepiirh5h/8Byz8cpY=
+      - salt=oAMN2p8trUx4giNmm/irtmJZ+CIq2GkObBL9Wk8t/4c=
+      - encryption-key=VPubu/YOZGzYESjth7gnQuUZHyHT09AsQb7Kdx8WmQg=
       - clickhouse-url=clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
       - clickhouse-migration-url=clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
       - clickhouse-user=default
