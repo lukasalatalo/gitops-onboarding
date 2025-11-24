@@ -31,9 +31,9 @@ spec:
               value: "admin"  # Password for LiteLLM UI (change this!)
             # Langfuse integration
             - name: LANGFUSE_SECRET_KEY
-              value: "lf_sk_development"  # Default development key from Langfuse init
+              value: "sk-lf-9680ed5e-9e5b-4635-97b6-7ad5406b95a3"  # Default development key from Langfuse init
             - name: LANGFUSE_PUBLIC_KEY
-              value: "lf_pk_development"  # Default development key from Langfuse init
+              value: "pk-lf-1eb3c16b-8f12-4de3-8a5b-d6deb20f3b62"  # Default development key from Langfuse init 
             - name: LANGFUSE_HOST
               value: "http://langfuse-service:3000"  # Internal service URL
             - name: LANGFUSE_ENABLE_TRACING
