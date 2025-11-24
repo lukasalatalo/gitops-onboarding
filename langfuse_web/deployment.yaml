@@ -133,6 +133,11 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: s3-force-path-style
+        - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: langfuse-s3-event-upload-bucket
         readinessProbe:
           httpGet:
             path: /api/public/ready

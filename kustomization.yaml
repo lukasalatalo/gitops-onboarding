@@ -53,6 +53,7 @@ configMapGenerator:
       - s3-bucket-name=langfuse
       - s3-region=us-east-1
       - s3-force-path-style=true
+      - langfuse-s3-event-upload-bucket=langfuse
 
 # Update the deployment to reference the generated ConfigMap name (with hash)
 # This ensures the deployment restarts when the ConfigMap changes
