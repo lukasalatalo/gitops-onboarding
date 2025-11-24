@@ -13,6 +13,6 @@ model_list:
       api_key: sk-K2AyiqHTpNHDp3vhmpChjQ
 
 # Langfuse integration
-general_settings:
-  success_callback: ["langfuse"]
+litellm_settings:
+  success_callback: ["langfuse_otel"]
 
