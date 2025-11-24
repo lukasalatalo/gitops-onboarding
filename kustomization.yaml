@@ -26,12 +26,16 @@ resources:
   - minio/minio-deployment.yaml
   - minio/minio-service.yaml
   - minio/minio-secret.yaml
+  - cronjob/cronjob.yaml
 
 
 configMapGenerator:
   - name: litellm-config
     files:
       - config.yaml=litellm/config-content.yaml
+  - name: nightly-script
+    files:
+      - nightly-script.sh=cronjob/nightly-script.sh
   - name: langfuse-config
     literals:
       - database-url=postgresql://langfuse:langfuse-password@langfuse-postgres:5432/langfuse
@@ -71,4 +75,14 @@ replacements:
           name: litellm
         fieldPaths:
           - spec.template.spec.volumes.0.configMap.name
+  - source:
+      kind: ConfigMap
+      name: nightly-script
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: CronJob
+          name: nightly-maintenance
+        fieldPaths:
+          - spec.jobTemplate.spec.template.spec.volumes.0.configMap.name
 

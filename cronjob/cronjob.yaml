@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nightly-maintenance
+  labels:
+    app: nightly-maintenance
+spec:
+  # Run every night at 2:00 AM UTC
+  # Cron format: minute hour day month weekday
+  schedule: "0 2 * * *"
+  # Keep 3 successful jobs and 1 failed job
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  # Start deadline: if job doesn't start within 10 minutes, skip it
+  startingDeadlineSeconds: 600
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: nightly-maintenance
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: nightly-script
+            image: busybox:latest
+            command:
+            - /bin/sh
+            - -c
+            - /scripts/nightly-script.sh
+            volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+              readOnly: true
+          volumes:
+          - name: script-volume
+            configMap:
+              name: nightly-script
+              defaultMode: 0755
+
