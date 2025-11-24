@@ -38,7 +38,7 @@ configMapGenerator:
       - salt=your-salt-change-this-in-production
       - encryption-key=your-encryption-key-change-this-in-production
       - clickhouse-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123
-      - clickhouse-migration-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse::8123
+      - clickhouse-migration-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123
       - clickhouse-user=defualt
       - clickhouse-password=langfuse-clickhouse-password
       - redis-host=langfuse-redis
