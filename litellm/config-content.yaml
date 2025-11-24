@@ -12,3 +12,7 @@ model_list:
       api_base: https://llm-proxy.edgez.live/v1
       api_key: sk-K2AyiqHTpNHDp3vhmpChjQ
 
+# Langfuse integration
+general_settings:
+  success_callback: ["langfuse"]
+

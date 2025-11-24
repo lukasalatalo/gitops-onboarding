@@ -36,6 +36,8 @@ spec:
               value: "pk-lf-1eb3c16b-8f12-4de3-8a5b-d6deb20f3b62"  # Default development key from Langfuse init 
             - name: LANGFUSE_HOST
               value: "http://langfuse-service:3000"  # Internal service URL
+            - name: LANGFUSE_BASE_URL
+              value: "http://langfuse-service:3000"  # Alternative name for Langfuse host
             - name: LANGFUSE_ENABLE_TRACING
               value: "true"
           volumeMounts:
