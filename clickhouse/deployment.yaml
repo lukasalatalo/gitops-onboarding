@@ -45,13 +45,6 @@ spec:
         - name: clickhouse-config
           mountPath: /bitnami/clickhouse/etc/conf.d/
           readOnly: true
-        resources:
-          requests:
-            cpu: "1.0"
-            memory: "8Gi"
-          limits:
-            cpu: "1.0"
-            memory: "8Gi"
         readinessProbe:
           httpGet:
             path: /ping

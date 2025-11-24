@@ -133,13 +133,6 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: node-tls-reject-unauthorized
-        resources:
-          requests:
-            cpu: "1.0"
-            memory: "4Gi"
-          limits:
-            cpu: "1.0"
-            memory: "4Gi"
         readinessProbe:
           httpGet:
             path: /api/public/ready
