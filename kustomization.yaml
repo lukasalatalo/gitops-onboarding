@@ -40,7 +40,7 @@ configMapGenerator:
       - config.yaml=litellm/config-content.yaml
   - name: langfuse-config
     literals:
-      - database-url=postgresql://langfuse:langfuse@langfuse-db-service:5432/langfuse
+      - database-url=postgresql://langfuse:langfuse-password@langfuse-postgres:5432/langfuse
       - db-user=langfuse
       - db-password=langfuse
       - nextauth-url=http://localhost:3000
