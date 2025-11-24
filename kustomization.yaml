@@ -14,6 +14,7 @@ resources:
   - langfuse_web/service.yaml
   - langfuse_db/deployment.yaml
   - langfuse_db/service.yaml
+  - langfuse_db/postgres-secret.yaml
   - langfuse_worker/deployment.yaml
   - clickhouse/deployment.yaml
   - clickhouse/service.yaml
