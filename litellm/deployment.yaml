@@ -29,13 +29,13 @@ spec:
               value: "dummy"  # Required by LiteLLM for custom models
             - name: UI_PASSWORD
               value: "admin"  # Password for LiteLLM UI (change this!)
-            # Langfuse integration - update these values after getting API keys from Langfuse UI
+            # Langfuse integration
             - name: LANGFUSE_SECRET_KEY
-              value: "lf-sk-placeholder"  # Get from Langfuse UI: Settings → API Keys
+              value: "lf_sk_development"  # Default development key from Langfuse init
             - name: LANGFUSE_PUBLIC_KEY
-              value: "lf-pk-placeholder"  # Get from Langfuse UI: Settings → API Keys
+              value: "lf_pk_development"  # Default development key from Langfuse init
             - name: LANGFUSE_HOST
-              value: "http://langfuse:3000"  # Internal service URL
+              value: "http://langfuse-service:3000"  # Internal service URL
             - name: LANGFUSE_ENABLE_TRACING
               value: "true"
           volumeMounts:
