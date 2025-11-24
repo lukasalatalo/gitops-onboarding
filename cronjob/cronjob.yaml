@@ -24,11 +24,10 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: nightly-script
-            image: busybox:latest
+            image: python:3.11-slim
             command:
-            - /bin/sh
-            - -c
-            - /scripts/nightly-script.sh
+            - python3
+            - /scripts/main.py
             volumeMounts:
             - name: script-volume
               mountPath: /scripts

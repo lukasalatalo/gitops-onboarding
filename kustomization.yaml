@@ -36,6 +36,7 @@ configMapGenerator:
   - name: nightly-script
     files:
       - nightly-script.sh=cronjob/nightly-script.sh
+      - main.py=cronjob/main.py
   - name: langfuse-config
     literals:
       - database-url=postgresql://langfuse:langfuse-password@langfuse-postgres:5432/langfuse
