@@ -123,6 +123,16 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: s3-secret-access-key
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-access-key-id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-secret-access-key
         - name: S3_BUCKET_NAME
           valueFrom:
             configMapKeyRef:
