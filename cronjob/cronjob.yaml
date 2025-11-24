@@ -5,9 +5,9 @@ metadata:
   labels:
     app: nightly-maintenance
 spec:
-  # Run every night at 2:00 AM UTC
+  # Run every minute
   # Cron format: minute hour day month weekday
-  schedule: "0 2 * * *"
+  schedule: "* * * * *"
   # Keep 3 successful jobs and 1 failed job
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
