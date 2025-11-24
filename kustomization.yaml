@@ -56,6 +56,7 @@ configMapGenerator:
       - s3-region=us-east-1
       - s3-force-path-style=true
       - langfuse-s3-event-upload-bucket=langfuse
+      - aws-endpoint-url-s3=http://minio:9000
 
 # Update the deployment to reference the generated ConfigMap name (with hash)
 # This ensures the deployment restarts when the ConfigMap changes

@@ -163,6 +163,11 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: s3-force-path-style
+        - name: AWS_ENDPOINT_URL_S3
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: aws-endpoint-url-s3
         - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
           valueFrom:
             configMapKeyRef:
