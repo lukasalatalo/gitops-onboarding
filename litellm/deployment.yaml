@@ -40,6 +40,9 @@ spec:
               value: "http://langfuse-service:3000"  # Alternative name for Langfuse host
             - name: LANGFUSE_ENABLE_TRACING
               value: "true"
+            - name: LANGFUSE_OTEL_HOST
+              value: "http://langfuse-service:3000" 
+
           volumeMounts:
             - name: litellm-config
               mountPath: /etc/litellm
