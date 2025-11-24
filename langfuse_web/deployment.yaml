@@ -98,36 +98,6 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: redis-port
-        - name: REDIS_AUTH
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: valkey-password
-        # - name: S3_ENDPOINT
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: langfuse-config
-        #       key: s3-endpoint
-        # - name: S3_ACCESS_KEY_ID
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: langfuse-config
-        #       key: minio-root-user
-        # - name: S3_SECRET_ACCESS_KEY
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: langfuse-config
-        #       key: minio-root-password
-        # - name: S3_BUCKET_NAME
-        #   value: "langfuse"
-        # - name: S3_REGION
-        #   value: "us-east-1"
-        # - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
-        #   value: "langfuse"
-        # - name: LANGFUSE_S3_EVENT_UPLOAD_PREFIX
-        #   value: "events/"
-        # - name: LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE
-        #   value: "true"
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           valueFrom:
             configMapKeyRef:
