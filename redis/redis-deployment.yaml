@@ -18,26 +18,13 @@ spec:
           ports:
             - containerPort: 6379
           command:
-            - sh
-            - -c
-            - |
-              sed "s/\${REDIS_PASSWORD}/$REDIS_PASSWORD/g" /etc/redis/redis.conf > /tmp/redis.conf
-              redis-server /tmp/redis.conf
-          env:
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: langfuse-redis-secret
-                  key: password
+            - redis-server
+            - --appendonly
+            - "yes"
           volumeMounts:
             - name: redis-data
               mountPath: /data
-            - name: redis-config
-              mountPath: /etc/redis
       volumes:
         - name: redis-data
           emptyDir: {}
-        - name: redis-config
-          configMap:
-            name: langfuse-redis-config
 

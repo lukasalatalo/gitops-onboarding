@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: langfuse-redis-config
-data:
-  redis.conf: |
-    appendonly yes
-    user default on >${REDIS_PASSWORD} ~* &* +@all
-

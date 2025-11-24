@@ -22,8 +22,6 @@ resources:
   - clickhouse/clickhouse-secret.yaml
   - redis/redis-deployment.yaml
   - redis/redis-service.yaml
-  - redis/redis-secret.yaml
-  - redis/redis-config.yaml
   - minio/minio-deployment.yaml
   - minio/minio-service.yaml
   - minio/minio-secret.yaml
@@ -48,8 +46,6 @@ configMapGenerator:
       - clickhouse-password=langfuse-clickhouse-password
       - redis-host=langfuse-redis
       - redis-port=6379
-      - redis-username=default
-      - redis-password=langfuse-redis-password
       - node-tls-reject-unauthorized=0
       - s3-endpoint=http://minio:9000
       - s3-access-key-id=minioadmin
