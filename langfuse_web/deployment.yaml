@@ -158,6 +158,11 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: s3-force-path-style
+        - name: AWS_S3_FORCE_PATH_STYLE
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-force-path-style
         - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
           valueFrom:
             configMapKeyRef:
