@@ -18,9 +18,15 @@ spec:
           ports:
             - containerPort: 6379
           command:
-            - redis-server
-            - --appendonly
-            - "yes"
+            - sh
+            - -c
+            - redis-server --appendonly yes --requirepass $REDIS_PASSWORD
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: langfuse-redis-secret
+                  key: password
           volumeMounts:
             - name: redis-data
               mountPath: /data
