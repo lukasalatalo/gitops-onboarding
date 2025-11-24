@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: langfuse-worker
-        image: worker-image
+        image: langfuse/worker:latest
         env:
         - name: DATABASE_URL
           valueFrom:
