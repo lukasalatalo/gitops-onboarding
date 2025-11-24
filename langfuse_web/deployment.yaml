@@ -103,6 +103,36 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: node-tls-reject-unauthorized
+        - name: S3_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-endpoint
+        - name: S3_ACCESS_KEY_ID
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-access-key-id
+        - name: S3_SECRET_ACCESS_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-secret-access-key
+        - name: S3_BUCKET_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-bucket-name
+        - name: S3_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-region
+        - name: S3_FORCE_PATH_STYLE
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-force-path-style
         readinessProbe:
           httpGet:
             path: /api/public/ready
