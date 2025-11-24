@@ -49,11 +49,11 @@ configMapGenerator:
       - nextauth-secret=your-nextauth-secret-change-this-in-production
       - salt=your-salt-change-this-in-production
       - encryption-key=your-encryption-key-change-this-in-production
-      - clickhouse-url=http://clickhouse-service:8123
-      - clickhouse-migration-url=http://clickhouse-service:8123
-      - clickhouse-user=langfuse
-      - clickhouse-password=langfuse
-      - redis-host=redis-service
+      - clickhouse-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123
+      - clickhouse-migration-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse::8123
+      - clickhouse-user=defualt
+      - clickhouse-password=langfuse-clickhouse-password
+      - redis-host=langfuse-redis
       - redis-port=6379
       - valkey-password=
       - s3-endpoint=http://minio-service:9000
