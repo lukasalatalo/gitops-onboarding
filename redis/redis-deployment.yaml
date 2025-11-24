@@ -20,7 +20,9 @@ spec:
           command:
             - sh
             - -c
-            - redis-server --appendonly yes --requirepass $REDIS_PASSWORD
+            - |
+              sed "s/\${REDIS_PASSWORD}/$REDIS_PASSWORD/g" /etc/redis/redis.conf > /tmp/redis.conf
+              redis-server /tmp/redis.conf
           env:
             - name: REDIS_PASSWORD
               valueFrom:
@@ -30,7 +32,12 @@ spec:
           volumeMounts:
             - name: redis-data
               mountPath: /data
+            - name: redis-config
+              mountPath: /etc/redis
       volumes:
         - name: redis-data
           emptyDir: {}
+        - name: redis-config
+          configMap:
+            name: langfuse-redis-config
 
