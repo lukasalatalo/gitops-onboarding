@@ -108,71 +108,100 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: node-tls-reject-unauthorized
-        - name: S3_ENDPOINT
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-endpoint
-        - name: S3_ACCESS_KEY_ID
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-access-key-id
-        - name: S3_SECRET_ACCESS_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-secret-access-key
-        - name: AWS_ACCESS_KEY_ID
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-access-key-id
-        - name: AWS_SECRET_ACCESS_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-secret-access-key
-        - name: S3_BUCKET_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-bucket-name
-        - name: S3_REGION
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-region
-        - name: AWS_REGION
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-region
-        - name: AWS_DEFAULT_REGION
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-region
-        - name: S3_FORCE_PATH_STYLE
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-force-path-style
-        - name: AWS_S3_FORCE_PATH_STYLE
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: s3-force-path-style
-        - name: AWS_ENDPOINT_URL_S3
-          valueFrom:
-            configMapKeyRef:
-              name: langfuse-config
-              key: aws-endpoint-url-s3
+        # - name: S3_ENDPOINT
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-endpoint
+        # - name: S3_ACCESS_KEY_ID
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-access-key-id
+        # - name: S3_SECRET_ACCESS_KEY
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-secret-access-key
+        # - name: AWS_ACCESS_KEY_ID
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-access-key-id
+        # - name: AWS_SECRET_ACCESS_KEY
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-secret-access-key
+        # - name: S3_BUCKET_NAME
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-bucket-name
+        # - name: S3_REGION
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-region
+        # - name: AWS_REGION
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-region
+        # - name: AWS_DEFAULT_REGION
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-region
+        # - name: S3_FORCE_PATH_STYLE
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-force-path-style
+        # - name: AWS_S3_FORCE_PATH_STYLE
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: s3-force-path-style
+        # - name: AWS_ENDPOINT_URL_S3
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: aws-endpoint-url-s3
+        # - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: langfuse-config
+        #       key: langfuse-s3-event-upload-bucket
         - name: LANGFUSE_S3_EVENT_UPLOAD_BUCKET
           valueFrom:
             configMapKeyRef:
               name: langfuse-config
               key: langfuse-s3-event-upload-bucket
+        - name: LANGFUSE_S3_EVENT_UPLOAD_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-region
+        - name: LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-access-key-id
+        - name: LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-secret-access-key
+        - name: LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-endpoint
+        - name: LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE
+          value: "true"
+        - name: LANGFUSE_S3_EVENT_UPLOAD_PREFIX
+          value: "events/"
         readinessProbe:
           httpGet:
             path: /api/public/ready
