@@ -40,7 +40,7 @@ configMapGenerator:
       - nextauth-secret=1a84e1da06eb3c81219bf989419ad75e2b837eb09a984d23db7465b3fbd7c0e0
       - salt=c340828a0ec29da19f8fb2b2dbdf23ce0a2b7189093442f24f7e92162d8eba81
       - encryption-key=ef0d67d473bae636e0b3de54303c812ba6b54162aa8885d33f4de4d3d507c2c7
-      - clickhouse-url=clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
+      - clickhouse-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123
       - clickhouse-migration-url=clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
       - clickhouse-user=default
       - clickhouse-password=langfuse-clickhouse-password
