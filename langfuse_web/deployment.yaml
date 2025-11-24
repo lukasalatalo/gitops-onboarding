@@ -133,6 +133,16 @@ spec:
             configMapKeyRef:
               name: langfuse-config
               key: s3-region
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-region
+        - name: AWS_DEFAULT_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: langfuse-config
+              key: s3-region
         - name: S3_FORCE_PATH_STYLE
           valueFrom:
             configMapKeyRef:
