@@ -37,9 +37,9 @@ configMapGenerator:
       - nextauth-secret=your-nextauth-secret-change-this-in-production
       - salt=your-salt-change-this-in-production
       - encryption-key=your-encryption-key-change-this-in-production
-      - clickhouse-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123
-      - clickhouse-migration-url=http://default:langfuse-clickhouse-password@langfuse-clickhouse:8123
-      - clickhouse-user=defualt
+      - clickhouse-url=clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
+      - clickhouse-migration-url=clickhouse://default:langfuse-clickhouse-password@langfuse-clickhouse:9000
+      - clickhouse-user=default
       - clickhouse-password=langfuse-clickhouse-password
       - redis-host=langfuse-redis
       - redis-port=6379
