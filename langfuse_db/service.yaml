@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: langfuse-db-service
-  labels:
-    component: langfuse-db
+  name: langfuse-postgres
 spec:
+  type: ClusterIP
   selector:
-    component: langfuse-db
+    app: langfuse-postgres
   ports:
-  - port: 5432
-    targetPort: 5432
+    - port: 5432
+      targetPort: 5432
+
