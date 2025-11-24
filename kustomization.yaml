@@ -16,10 +16,12 @@ resources:
   - langfuse_db/service.yaml
   - langfuse_db/postgres-secret.yaml
   - langfuse_worker/deployment.yaml
-  - clickhouse/deployment.yaml
-  - clickhouse/service.yaml
-  - clickhouse/configmap.yaml
-
+  - clickhouse/clickhouse-deployment.yaml
+  - clickhouse/clickhouse-service.yaml
+  - clickhouse/clickhouse-config.yaml
+  - clickhouse/clickhouse-secret.yaml
+  - redis/redis-deployment.yaml
+  - redis/redis-service.yaml
   # - langfuse/langfuse-secret.yaml
   # - langfuse/postgres-secret.yaml
   # - langfuse/postgres-deployment.yaml
